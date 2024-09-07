@@ -1,0 +1,25 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: bitcoin-price-v1-service
+  labels:
+    app: bitcoin-price-v1-service
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: bitcoin-price-v1-service
+  strategy:
+    type: RollingUpdate
+    rollingUpdate:
+      maxSurge: 3
+  template:
+    metadata:
+      labels:
+        app: bitcoin-price-v1-service
+    spec:
+      containers:
+        - name: bitcoin-price-v1-service
+          image: worldbosskafka/email-svc:v1.0.8
+          ports:
+            - containerPort: 1957
