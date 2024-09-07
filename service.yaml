@@ -1,12 +1,12 @@
 apiVersion: v1
 kind: Service
 metadata:
-  name: bitcoin-price-v1-service
+  name: coinbase-service
 spec:
   selector:
-    app: bitcoin-price-v1-service
-  type: ClusterIP
+    app: coinbase-service
   ports:
-    - port: 1957
-      targetPort: 1957
-      protocol: TCP
+    - protocol: TCP
+      port: 88
+      targetPort: 5500
+  type: LoadBalancer
